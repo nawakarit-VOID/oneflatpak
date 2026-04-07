@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>{{.AppID}}</id>
+
+  <name>{{.Name}}</name>
+  <summary>{{.Summary}}</summary>
+
+  <description>
+    <p>{{.Description}}</p>
+  </description>
+
+  <launchable type="desktop-id">
+    {{.AppID}}.desktop
+  </launchable>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>{{.License}}</project_license>
+
+  <developer_name>{{.Developer}}</developer_name>
+
+  <releases>
+    <release version="1.0.0" date="2026-01-01"/>
+  </releases>
+</component>

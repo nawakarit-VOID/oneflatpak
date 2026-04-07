@@ -1,0 +1,27 @@
+{
+  "app-id": "{{.AppID}}",
+  "runtime": "org.freedesktop.Platform",
+  "runtime-version": "23.08",
+  "sdk": "org.freedesktop.Sdk",
+  "command": "{{.Command}}",
+  "finish-args": [
+    "--share=network",
+    "--socket=x11",
+    "--socket=wayland"
+  ],
+  "modules": [
+    {
+      "name": "{{.Name}}",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -D {{.Command}} /app/bin/{{.Command}}"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "{{.Command}}"
+        }
+      ]
+    }
+  ]
+}
