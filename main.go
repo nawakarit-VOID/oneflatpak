@@ -51,10 +51,34 @@ func generateFile(tmplPath, outputPath string, data AppConfig) error {
 func runScriptbuildflatpak(projectPath string, output *widget.Entry) {
 
 	commands := [][]string{
-		{"gnome-terminal", "--", "bash", "-c", "cd '" + projectPath + "' && ./buildflatpak.sh; exec bash"},
-		{"x-terminal-emulator", "-e", "bash", "-c", "cd '" + projectPath + "' && ./buildflatpak.sh; exec bash"},
-		{"konsole", "-e", "bash", "-c", "cd '" + projectPath + "' && ./buildflatpak.sh; exec bash"},
-		{"xfce4-terminal", "-e", "bash", "-c", "cd '" + projectPath + "' && ./buildflatpak.sh; exec bash"},
+		{"gnome-terminal", "--", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildflatpak.sh && ./buildflatpak.sh; exec bash"},
+		{"x-terminal-emulator", "-e", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildflatpak.sh && ./buildflatpak.sh; exec bash"},
+		{"konsole", "-e", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildflatpak.sh && ./buildflatpak.sh; exec bash"},
+		{"xfce4-terminal", "-e", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildflatpak.sh && ./buildflatpak.sh; exec bash"},
+	}
+
+	for _, c := range commands {
+		cmd := exec.Command(c[0], c[1:]...)
+		err := cmd.Start()
+		if err == nil {
+			output.SetText("🚀 opened terminal: " + c[0])
+			return
+		}
+	}
+
+	output.SetText("❌ no terminal found")
+}
+
+// ============================================================================
+// ฟังชั้น build Icons
+// ============================================================================
+func runScriptbuildIcons(projectPath string, output *widget.Entry) {
+
+	commands := [][]string{ //ใช้ imagemagick
+		{"gnome-terminal", "--", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildicons.sh && ./buildicons.sh; exec bash"},
+		{"x-terminal-emulator", "-e", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildicons.sh && ./buildicons.sh; exec bash"},
+		{"konsole", "-e", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildicons.sh && ./buildicons.sh; exec bash"},
+		{"xfce4-terminal", "-e", "bash", "-c", "cd '" + projectPath + "' && chmod +x buildicons.sh && ./buildicons.sh; exec bash"},
 	}
 
 	for _, c := range commands {
@@ -142,12 +166,28 @@ func main() {
 			logBox.SetText("📁 Selected: " + projectPath)
 		}, w)
 	})
+	// ============================================================================
+	// Generate scrip Icons Btn
+	// ============================================================================
+	// 🔧 Generate
+	genscripiconsBtn := widget.NewButton("Generate scrip Icons", func() {
 
+		if projectPath == "" {
+			logBox.SetText("❌ Please select project folder")
+			return
+		}
+		cfg := AppConfig{}
+
+		generateFile("templates/buildicons.tmpl",
+			filepath.Join(projectPath, "buildicons.sh"), cfg) //เอา scrip build ออกมาไว้นอกแฟ้ม flatpak
+
+		logBox.SetText("✅ Generated File - - buildicons - -")
+	})
 	// ============================================================================
 	// Generate scrip flatpak Btn
 	// ============================================================================
 	// 🔧 Generate
-	genscripflatpakBtn := widget.NewButton("Generate - File Flatpak - And - File Scrip Build Flatpak", func() {
+	genscripflatpakBtn := widget.NewButton("Generate - Folder and scrip Flatpak - + - File Scrip Build Flatpak", func() {
 
 		if projectPath == "" {
 			logBox.SetText("❌ Please select project folder")
@@ -183,6 +223,37 @@ func main() {
 		logBox.SetText("✅ Generated File Flatpak\n---------and---------\nFile Scrip Build Flatpak\n")
 	})
 
+	// ============================================================================
+	// ปุ่ม Build flatpak
+	// ============================================================================
+	buildflatpakBtn := widget.NewButton("Run Build", func() {
+
+		if projectPath == "" {
+			logBox.SetText("❌ select folder first")
+			return
+		}
+
+		//  run script
+		go runScriptbuildflatpak(projectPath, logBox)
+
+		logBox.SetText("🚀 Build started in terminal...")
+	})
+	// ============================================================================
+	// ปุ่ม Build Icons **ใช้ imagemagick
+	// ============================================================================
+	buildIconsBtn := widget.NewButton("Run Build", func() {
+
+		if projectPath == "" {
+			logBox.SetText("❌ select folder first")
+			return
+		}
+
+		//  run script
+		go runScriptbuildIcons(projectPath, logBox)
+
+		logBox.SetText("🚀 Build started in terminal...")
+	})
+
 	/*// 🏗️ Build
 	buildBtn := widget.NewButton("Build Flatpak", func() {
 		logBox.SetText("🚧 Building...\n")
@@ -212,10 +283,11 @@ func main() {
 
 	ui := container.NewVBox(
 		selectBtn,
+		container.NewHBox(genscripiconsBtn, buildIconsBtn),
 
 		name, appID, command,
 		categories, summary, description, developer,
-		genscripflatpakBtn,
+		genscripflatpakBtn, buildflatpakBtn,
 		//buildBtn,
 		//runBtn,
 		widget.NewLabel("Logs:"),
