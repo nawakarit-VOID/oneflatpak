@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"text/template"
+	"time"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -24,6 +25,9 @@ type AppConfig struct {
 	Description string
 	License     string
 	Developer   string
+	Date        string
+	TimeEntry   string
+	Version     string
 }
 
 // ============================================================================
@@ -125,25 +129,47 @@ func main() {
 
 	// inputs
 	name := widget.NewEntry()
-	name.SetPlaceHolder("App Name")
+	name.SetPlaceHolder("App Name - ชื่อโปรแกรม -แอพ จะแสดงในหน้าสโตร์")
 
 	appID := widget.NewEntry()
-	appID.SetPlaceHolder("com.example.app")
+	appID.SetPlaceHolder("com.example.app - แอพไอดี")
 
 	command := widget.NewEntry()
-	command.SetPlaceHolder("binary name")
+	command.SetPlaceHolder("binary name - ชื่อโปแกรมตอน Build")
 
 	categories := widget.NewEntry()
-	categories.SetPlaceHolder("Utility;")
+	categories.SetPlaceHolder("Utility; - ประเภทโปรแกรม")
+
+	catmenu := widget.NewMultiLineEntry()
+	catmenu.SetText(`ประเภทโปรแกรม
+	Utility; = ยูทิลิตี้ (ทั่วไป)
+	Development; = การพัฒนา
+	Game; = เกม
+	Graphics; = กราฟิก
+	Network; = เครือข่าย
+	Office; = สำนักงาน
+	Audio; = เสียง
+	Video; = วิดีโอ
+	System; = ระบบ`)
+	catmenu.SetMinRowsVisible(10)
 
 	summary := widget.NewEntry()
-	summary.SetPlaceHolder("Short summary")
+	summary.SetPlaceHolder("Short summary - คุณบัติของแอพ")
 
 	description := widget.NewMultiLineEntry()
-	description.SetPlaceHolder("Description")
+	description.SetPlaceHolder("Description - รายละเอียดของแอพ")
 
 	developer := widget.NewEntry()
-	developer.SetPlaceHolder("Your name")
+	developer.SetPlaceHolder("Your name - จะแสดงหน้าสโตร์")
+
+	date := widget.NewEntry()
+	date.SetPlaceHolder("📅 วันที่ - YYYY-MM-DD")
+
+	timeEntry := widget.NewEntry()
+	timeEntry.SetPlaceHolder("⏰ เวลา - HH:MM")
+
+	version := widget.NewEntry()
+	version.SetPlaceHolder("ใ่ส่เวอร์ชัน เช่น 1.0.0")
 
 	// 🔥 log box
 	logBox := widget.NewMultiLineEntry()
@@ -203,6 +229,9 @@ func main() {
 			Description: description.Text,
 			License:     "MIT",
 			Developer:   developer.Text,
+			Date:        date.Text,
+			TimeEntry:   timeEntry.Text,
+			Version:     version.Text,
 		}
 
 		flatpakPath := projectPath + "/" + "flatpak"
@@ -226,7 +255,7 @@ func main() {
 	// ============================================================================
 	// ปุ่ม Build flatpak
 	// ============================================================================
-	buildflatpakBtn := widget.NewButton("Run Build", func() {
+	buildflatpakBtn := widget.NewButton("Run Build Flatpak", func() {
 
 		if projectPath == "" {
 			logBox.SetText("❌ select folder first")
@@ -241,7 +270,7 @@ func main() {
 	// ============================================================================
 	// ปุ่ม Build Icons **ใช้ imagemagick
 	// ============================================================================
-	buildIconsBtn := widget.NewButton("Run Build", func() {
+	buildIconsBtn := widget.NewButton("Run Build Icons", func() {
 
 		if projectPath == "" {
 			logBox.SetText("❌ select folder first")
@@ -280,13 +309,28 @@ func main() {
 
 			go runCommand(cmd, logBox)
 		})*/
+	// ============================================================================
+	// ปุ่มเพิ่มวัน เวลา
+	// ============================================================================
+	nowBtn := widget.NewButton("กด เพื่อ ใส่เวลาปัจจุบัน", func() {
+		now := time.Now()
+
+		date.SetText(now.Format("2006-01-02"))
+		timeEntry.SetText(now.Format("15:04"))
+	})
+	// ============================================================================
+	// จัดหน้ามัน
+	// ============================================================================
 
 	ui := container.NewVBox(
 		selectBtn,
-		container.NewHBox(genscripiconsBtn, buildIconsBtn),
+		container.NewGridWithColumns(2, genscripiconsBtn, buildIconsBtn),
 
 		name, appID, command,
-		categories, summary, description, developer,
+		categories, catmenu, summary, description, developer,
+		version,
+		container.NewGridWithColumns(3, date, timeEntry, nowBtn),
+
 		genscripflatpakBtn, buildflatpakBtn,
 		//buildBtn,
 		//runBtn,

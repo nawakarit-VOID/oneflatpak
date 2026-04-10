@@ -2,7 +2,7 @@
 set -e
 export PATH=/usr/local/go/bin:$PATH
 
-EXEC=1
+EXEC=3
 
 echo "📦ลบ Flatpak repo...อันก่อน"
 
@@ -24,11 +24,11 @@ rm -rf build-dir repo
 
 echo "📦 หาไฟล์ json แล้ว รัน scrip...สร้าง ไฟล์ bundle"
 sleep 1
-flatpak-builder --force-clean --repo=repo build-dir flatpak/1.json
+flatpak-builder --force-clean --repo=repo build-dir flatpak/2.json
 
 echo "📦 Packing...เตรียมรับแรงกระแทก"
 sleep 1
-flatpak build-bundle repo 1.flatpak 1
+flatpak build-bundle repo 1.flatpak 2
 
 done
 echo "✅ เสร็จแล้ว!"
