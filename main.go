@@ -283,32 +283,6 @@ func main() {
 		logBox.SetText("🚀 Build started in terminal...")
 	})
 
-	/*// 🏗️ Build
-	buildBtn := widget.NewButton("Build Flatpak", func() {
-		logBox.SetText("🚧 Building...\n")
-
-		cmd := exec.Command(
-			"flatpak-builder",
-			"--force-clean",
-			"build-dir",
-			filepath.Join("output", appID.Text+".json"),
-		)
-
-		go runCommand(cmd, logBox)
-	})*/
-
-	/*	// ▶️ Run
-		runBtn := widget.NewButton("Run App", func() {
-			logBox.SetText("▶️ Running...\n")
-
-			cmd := exec.Command(
-				"flatpak",
-				"run",
-				appID.Text,
-			)
-
-			go runCommand(cmd, logBox)
-		})*/
 	// ============================================================================
 	// ปุ่มเพิ่มวัน เวลา
 	// ============================================================================

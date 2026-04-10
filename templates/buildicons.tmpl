@@ -11,7 +11,7 @@ sleep 1
 
 mkdir -p $OUTDIR
 
-SIZES=(512 256 128 64)
+SIZES=(512 256 128 64 32 16)
 
 for SIZE in "${SIZES[@]}"; do
   convert "$INPUT" \
