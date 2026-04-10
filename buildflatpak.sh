@@ -1,0 +1,61 @@
+#!/bin/bash
+set -e
+export PATH=/usr/local/go/bin:$PATH
+
+EXEC=1
+
+echo "📦ลบ Flatpak repo...อันก่อน"
+
+echo "ตรวจเช็คไฟล์"
+sleep 1
+
+[ -f "main.go" ] || { echo "❌ main.go missing"; exit 1; }
+[ -f "go.mod" ] || { echo "❌ go.mod missing"; exit 1; }
+[ -f "go.sum" ] || { echo "❌ go.sum, missing"; exit 1; }
+
+echo "🔨 ใจเย็นๆ..."
+sleep 1
+go mod tidy
+go build -ldflags="-s -w" -o $EXEC
+
+echo "📦 ลบ Flatpak repo...อันก่อน"
+sleep 1
+rm -rf build-dir repo
+
+echo "📦 หาไฟล์ json แล้ว รัน scrip...สร้าง ไฟล์ bundle"
+sleep 1
+flatpak-builder --force-clean --repo=repo build-dir flatpak/1.json
+
+echo "📦 Packing...เตรียมรับแรงกระแทก"
+sleep 1
+flatpak build-bundle repo 1.flatpak 1
+
+done
+echo "✅ เสร็จแล้ว!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

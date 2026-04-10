@@ -6,7 +6,7 @@
   "command": "{{.Command}}",
   "finish-args": [
     "--share=network",
-    "--socket=x11",
+    "--socket=fallback-x11",
     "--socket=wayland"
   ],
   "modules": [
@@ -15,11 +15,12 @@
       "buildsystem": "simple",
       "build-commands": [
         "install -D {{.Command}} /app/bin/{{.Command}}"
+
       ],
       "sources": [
         {
           "type": "file",
-          "path": "{{.Command}}"
+          "path": "../{{.Command}}"
         }
       ]
     }

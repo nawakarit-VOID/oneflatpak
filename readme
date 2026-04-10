@@ -1,0 +1,4 @@
+ในเครื่องต้องมี Flatpak
+-flatpak --version
+-flatpak-builder --version
+

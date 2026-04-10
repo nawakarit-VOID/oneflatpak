@@ -1,4 +1,4 @@
-module flatgui
+module oneflatpak
 
 go 1.26.1
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>1</id>
+
+  <name>1</name>
+  <summary>1</summary>
+
+  <description>
+    <p>1</p>
+  </description>
+
+  <launchable type="desktop-id">
+    1.desktop
+  </launchable>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+
+  <developer_name></developer_name>
+
+  <releases>
+    <release version="1.0.0" date="2026-01-01"/>
+  </releases>
+</component>
