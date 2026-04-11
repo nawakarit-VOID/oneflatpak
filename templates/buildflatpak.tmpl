@@ -4,8 +4,6 @@ export PATH=/usr/local/go/bin:$PATH
 
 EXEC={{.Command}}
 
-echo "📦ลบ Flatpak repo...อันก่อน"
-
 echo "ตรวจเช็คไฟล์"
 sleep 1
 
@@ -21,6 +19,10 @@ go build -ldflags="-s -w" -o $EXEC
 echo "📦 ลบ Flatpak repo...อันก่อน"
 sleep 1
 rm -rf build-dir repo
+
+echo "📦 ก็อป iconsไปที่ Flatpak..."
+cp icons  flatpak/
+
 
 echo "📦 หาไฟล์ json แล้ว รัน scrip...สร้าง ไฟล์ bundle"
 sleep 1

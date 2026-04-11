@@ -14,7 +14,7 @@
       "name": "{{.Name}}",
       "buildsystem": "simple",
       "build-commands": [
-        "install -D {{.Command}} /app/bin/{{.Command}}"
+        "install -D {{.Command}} /app/bin/{{.Command}}",
         "install -D {{.AppID}}.desktop /app/share/applications/{{.AppID}}.desktop",
         "install -D {{.AppID}}.metainfo.xml /app/share/metainfo/{{.AppID}}.metainfo.xml",
         "install -D icons/icon-16.png /app/share/icons/hicolor/16x16/apps/{{.AppID}}.png",
@@ -25,7 +25,7 @@
         "install -D icons/icon-512.png /app/share/icons/hicolor/512x512/apps/{{.AppID}}.png"
       ],
       "sources": [
-        { "type": "file","path": "../{{.Command}}"}
+        { "type": "file","path": "../{{.Command}}"},
         { "type": "file", "path": "{{.AppID}}.desktop" },
         { "type": "file", "path": "{{.AppID}}.metainfo.xml" },
         { "type": "file", "path": "icons/icon-16.png" },

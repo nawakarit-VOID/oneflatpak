@@ -32,8 +32,8 @@
    <description>
       <p>{{.Name}} {{.Version}}</p>
       <ul>
-        <li>*สิ่งที่อัพเดท 1*</li>
-        <li>*สิ่งที่อัพเดท 2*</li>
+        <li>{{.DesUpdate1}}</li>
+        <li>{{.DesUpdate2}}</li>
       </ul>
     </description>
   </release>
@@ -66,29 +66,29 @@
 
   <screenshot type="default">
     <caption>Main window</caption>
-    <image>https://raw.githubusercontent.com/*[Owner เจ้าของ] - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 1*.png</image>
+    <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix1}}.png</image>
   </screenshot>
 
   <screenshot>
-    <image>https://raw.githubusercontent.com/*[Owner เจ้าของ] - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 2*.png</image>
+    <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix2}}.png</image>
   </screenshot>
 
   <screenshot>
-    <image>https://raw.githubusercontent.com/*[Owner เจ้าของ] - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 3*.png</image>
+    <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix3}}.png</image>
   </screenshot>
 
   <screenshot>
-    <image>https://raw.githubusercontent.com/*[Owner เจ้าของ] - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 4*.png</image>
+    <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix4}}.png</image>
   </screenshot>
 
   <screenshot>
-    <image>https://raw.githubusercontent.com/*[Owner เจ้าของ] - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 5*.png</image>
+    <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix5}}.png</image>
   </screenshot>
 
 </screenshots>
 
-  <url type="homepage">https://github.com/*ur - url*</url>
-  <url type="bugtracker">https://github.com/*ur - url*/test-2-flatpak/issues</url>
+  <url type="homepage">https://github.com/{{.Owner}}</url>
+  <url type="bugtracker">https://github.com/{{.Owner}}/{{.NameRepo}}/issues</url>
   <!--url type="donation">https://your-site.com/donate</url-->
   <!--url type="help">https://your-site.com/help</url-->
 
