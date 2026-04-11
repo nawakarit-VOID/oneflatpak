@@ -6,20 +6,83 @@
   <name>{{.Name}}</name>
   <summary>{{.Summary}}</summary>
 
-  <description>
-    <p>{{.Description}}</p>
-  </description>
-
-  <launchable type="desktop-id">
-    {{.AppID}}.desktop
-  </launchable>
-
+ <project_license>{{.License}}</project_license>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>{{.License}}</project_license>
+
+  <content_rating type="oars-1.1"/>
 
   <developer_name>{{.Developer}}</developer_name>
 
+  <description>
+    <p>{{.Description}}</p>
+
+
+
+
+
+
+
+  </description>
+
+  <launchable type="desktop-id">{{.AppID}}.desktop</launchable>
+
   <releases>
+    <!-- เวอร์ชันล่าสุด (ต้องอยู่บนสุด) -->
     <release version="{{.Version}}" date="{{.Date}}"/>
-  </releases>
+   <description>
+      <p>{{.Name}} v{{.Version}}</p>
+      <ul>
+        <li>*สิ่งที่อัพเดท 1*</li>
+        <li>*สิ่งที่อัพเดท 1*</li>
+      </ul>
+    </description>
+  </release>
+
+<!-- เวอร์ชันก่อนหน้า -->
+  <!--release version="*.*.*" date="****-**-**">
+    <description>
+      <p>เพิ่มระบบรวมภาพเป็น PDF</p>
+    </description>
+  </release-->
+
+  <!-- เวอร์ชันแรก -->
+  <!--release version="*.*.*" date="****-**-**">
+    <description>
+      <p>Initial release</p>
+    </description>
+  </release-->
+
+</releases>
+
+ <screenshots>
+
+  <screenshot type="default">
+    <caption>Main window</caption>
+    <image>https://raw.githubusercontent.com/*ที่อยู่ url - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 1*.png</image>
+  </screenshot>
+
+  <screenshot>
+    <image>https://raw.githubusercontent.com/*ที่อยู่ url - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 2*.png</image>
+  </screenshot>
+
+  <screenshot>
+    <image>https://raw.githubusercontent.com/*ที่อยู่ url - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 3*.png</image>
+  </screenshot>
+
+  <screenshot>
+    <image>https://raw.githubusercontent.com/*ที่อยู่ url - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 4*.png</image>
+  </screenshot>
+
+  <screenshot>
+    <image>https://raw.githubusercontent.com/*ที่อยู่ url - github*/*ชื่อ repo*/refs/heads/main/*ชื่อรูปภาพ 5*.png</image>
+  </screenshot>
+
+</screenshots>
+
+  <url type="homepage">https://github.com/*ur - url*</url>
+  <url type="bugtracker">https://github.com/*ur - url*/test-2-flatpak/issues</url>
+  <!--url type="donation">https://your-site.com/donate</url-->
+  <!--url type="help">https://your-site.com/help</url-->
+
+
 </component>

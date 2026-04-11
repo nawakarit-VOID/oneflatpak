@@ -1,8 +1,8 @@
 {
   "app-id": "{{.AppID}}",
   "runtime": "org.freedesktop.Platform",
-  "runtime-version": "23.08",
-  "sdk": "org.freedesktop.Sdk",
+  "runtime-version": "25.08",
+  "sdk": "org.freedesktop.Sdk//25.08",
   "command": "{{.Command}}",
   "finish-args": [
     "--share=ipc",
@@ -16,7 +16,6 @@
       "build-commands": [
         "install -D {{.Command}} /app/bin/{{.Command}}"
         "install -D {{.AppID}}.desktop /app/share/applications/{{.AppID}}.desktop",
-        "ls -lah",
         "install -D {{.AppID}}.metainfo.xml /app/share/metainfo/{{.AppID}}.metainfo.xml",
         "install -D icons/icon-16.png /app/share/icons/hicolor/16x16/apps/{{.AppID}}.png",
         "install -D icons/icon-32.png /app/share/icons/hicolor/32x32/apps/{{.AppID}}.png",
