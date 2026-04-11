@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Nawakarit
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License v3.0.
 package main
 
 import (
@@ -171,7 +174,7 @@ func main() {
 	version := widget.NewEntry()
 	version.SetPlaceHolder("ใ่ส่เวอร์ชัน เช่น 1.0.0")
 
-	// 🔥 log box
+	// log box
 	logBox := widget.NewMultiLineEntry()
 	logBox.SetPlaceHolder("Logs will appear here...")
 	logBox.Wrapping = fyne.TextWrapWord
@@ -227,7 +230,7 @@ func main() {
 			Categories:  categories.Text,
 			Summary:     summary.Text,
 			Description: description.Text,
-			License:     "MIT",
+			License:     "GPL-3.0-or-later",
 			Developer:   developer.Text,
 			Date:        date.Text,
 			TimeEntry:   timeEntry.Text,
