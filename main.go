@@ -31,6 +31,15 @@ type AppConfig struct {
 	Date        string
 	TimeEntry   string
 	Version     string
+	DesUpdate1  string
+	DesUpdate2  string
+	Owner       string
+	NameRepo    string
+	NamePix1    string
+	NamePix2    string
+	NamePix3    string
+	NamePix4    string
+	NamePix5    string
 }
 
 // ============================================================================
@@ -154,7 +163,7 @@ func main() {
 	Audio; = เสียง
 	Video; = วิดีโอ
 	System; = ระบบ`)
-	catmenu.SetMinRowsVisible(10)
+	catmenu.SetMinRowsVisible(11)
 
 	summary := widget.NewEntry()
 	summary.SetPlaceHolder("Short summary - คุณบัติของแอพ")
@@ -174,6 +183,33 @@ func main() {
 	version := widget.NewEntry()
 	version.SetPlaceHolder("ใ่ส่เวอร์ชัน เช่น 1.0.0")
 
+	desUpdate1 := widget.NewEntry()
+	desUpdate1.SetPlaceHolder("-สิ่งที่อัพเดท 1")
+
+	desUpdate2 := widget.NewEntry()
+	desUpdate2.SetPlaceHolder("-สิ่งที่อัพเดท 2")
+
+	owner := widget.NewEntry()
+	owner.SetPlaceHolder("ชื่อเจ้าของ Github [Owner]")
+
+	nameRepo := widget.NewEntry()
+	nameRepo.SetPlaceHolder("ชื่อ Repository")
+
+	namePix1 := widget.NewEntry()
+	namePix1.SetPlaceHolder("1.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+
+	namePix2 := widget.NewEntry()
+	namePix2.SetPlaceHolder("2.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+
+	namePix3 := widget.NewEntry()
+	namePix3.SetPlaceHolder("3.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+
+	namePix4 := widget.NewEntry()
+	namePix4.SetPlaceHolder("4.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+
+	namePix5 := widget.NewEntry()
+	namePix5.SetPlaceHolder("5.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+
 	// log box
 	logBox := widget.NewMultiLineEntry()
 	logBox.SetPlaceHolder("Logs will appear here...")
@@ -185,7 +221,7 @@ func main() {
 	// 🔹 เลือก folder
 	projectPath := ""
 
-	selectBtn := widget.NewButton("Select Project Folder", func() {
+	selectBtn := widget.NewButton("1 - Select Project Folder", func() {
 		dialog.ShowFolderOpen(func(uri fyne.ListableURI, err error) {
 			if uri == nil {
 				return
@@ -199,7 +235,7 @@ func main() {
 	// Generate scrip Icons Btn
 	// ============================================================================
 	// 🔧 Generate
-	genscripiconsBtn := widget.NewButton("Generate scrip Icons", func() {
+	genscripiconsBtn := widget.NewButton("2 - Generate scrip Icons", func() {
 
 		if projectPath == "" {
 			logBox.SetText("❌ Please select project folder")
@@ -216,7 +252,7 @@ func main() {
 	// Generate scrip flatpak Btn
 	// ============================================================================
 	// 🔧 Generate
-	genscripflatpakBtn := widget.NewButton("Generate - Folder and scrip Flatpak - + - File Scrip Build Flatpak", func() {
+	genscripflatpakBtn := widget.NewButton("5 - Generate - Folder and scrip Flatpak - + - File Scrip Build Flatpak", func() {
 
 		if projectPath == "" {
 			logBox.SetText("❌ Please select project folder")
@@ -235,6 +271,15 @@ func main() {
 			Date:        date.Text,
 			TimeEntry:   timeEntry.Text,
 			Version:     version.Text,
+			DesUpdate1:  desUpdate1.Text,
+			DesUpdate2:  desUpdate2.Text,
+			Owner:       owner.Text,
+			NameRepo:    nameRepo.Text,
+			NamePix1:    namePix1.Text,
+			NamePix2:    namePix2.Text,
+			NamePix3:    namePix3.Text,
+			NamePix4:    namePix4.Text,
+			NamePix5:    namePix5.Text,
 		}
 
 		flatpakPath := projectPath + "/" + "flatpak"
@@ -258,7 +303,7 @@ func main() {
 	// ============================================================================
 	// ปุ่ม Build flatpak
 	// ============================================================================
-	buildflatpakBtn := widget.NewButton("Run Build Flatpak", func() {
+	buildflatpakBtn := widget.NewButton("7 - Run Build Flatpak", func() {
 
 		if projectPath == "" {
 			logBox.SetText("❌ select folder first")
@@ -273,7 +318,7 @@ func main() {
 	// ============================================================================
 	// ปุ่ม Build Icons **ใช้ imagemagick
 	// ============================================================================
-	buildIconsBtn := widget.NewButton("Run Build Icons", func() {
+	buildIconsBtn := widget.NewButton("3 - Run Build Icons", func() {
 
 		if projectPath == "" {
 			logBox.SetText("❌ select folder first")
@@ -289,7 +334,7 @@ func main() {
 	// ============================================================================
 	// ปุ่มเพิ่มวัน เวลา
 	// ============================================================================
-	nowBtn := widget.NewButton("กด เพื่อ ใส่เวลาปัจจุบัน", func() {
+	nowBtn := widget.NewButton("4 - กด เพื่อ ใส่เวลาปัจจุบัน", func() {
 		now := time.Now()
 
 		date.SetText(now.Format("2006-01-02"))
@@ -299,23 +344,35 @@ func main() {
 	// จัดหน้ามัน
 	// ============================================================================
 
-	ui := container.NewVBox(
-		selectBtn,
-		container.NewGridWithColumns(2, genscripiconsBtn, buildIconsBtn),
+	ui := container.NewGridWithColumns(2,
 
-		name, appID, command,
-		categories, catmenu, summary, description, developer,
-		version,
-		container.NewGridWithColumns(3, date, timeEntry, nowBtn),
+		container.NewVBox(
+			selectBtn,
+			container.NewGridWithColumns(2, genscripiconsBtn, buildIconsBtn),
 
-		genscripflatpakBtn, buildflatpakBtn,
-		//buildBtn,
-		//runBtn,
-		widget.NewLabel("Logs:"),
-		logBox,
+			name, appID, command,
+			categories, catmenu, developer,
+			version,
+			container.NewGridWithColumns(3, date, timeEntry, nowBtn),
+		),
+		container.NewVBox(summary, description,
+			container.NewGridWithColumns(2, desUpdate1, desUpdate2),
+			container.NewGridWithColumns(2, owner, nameRepo),
+			namePix1,
+			namePix2,
+			namePix3,
+			namePix4,
+			namePix5,
+			genscripflatpakBtn,
+			widget.NewLabel("6 - ตรวจเช็คไฟล์ XML ก่อน"),
+			buildflatpakBtn,
+			//widget.NewLabel("Logs:"),
+			logBox,
+		),
 	)
 
 	w.SetContent(ui)
-	w.Resize(fyne.NewSize(700, 700))
+	w.Resize(fyne.NewSize(1000, 600))
+	w.SetFixedSize(true)
 	w.ShowAndRun()
 }
