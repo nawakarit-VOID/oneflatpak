@@ -141,15 +141,19 @@ func main() {
 
 	// inputs
 	name := widget.NewEntry()
+	name.SetText("Pomodoro")
 	name.SetPlaceHolder("App Name - ชื่อโปรแกรม -แอพ จะแสดงในหน้าสโตร์")
 
 	appID := widget.NewEntry()
+	appID.SetText("com.nawakarit.pomodoro")
 	appID.SetPlaceHolder("com.example.app - แอพไอดี")
 
 	command := widget.NewEntry()
+	command.SetText("pomodoro")
 	command.SetPlaceHolder("binary name - ชื่อโปแกรมตอน Build")
 
 	categories := widget.NewEntry()
+	categories.SetText("Utility;")
 	categories.SetPlaceHolder("Utility; - ประเภทโปรแกรม")
 
 	catmenu := widget.NewMultiLineEntry()
@@ -166,12 +170,15 @@ func main() {
 	catmenu.SetMinRowsVisible(11)
 
 	summary := widget.NewEntry()
+	summary.SetText("Faster")
 	summary.SetPlaceHolder("Short summary - คุณบัติของแอพ")
 
 	description := widget.NewMultiLineEntry()
+	description.SetText("and Faster more++")
 	description.SetPlaceHolder("Description - รายละเอียดของแอพ")
 
 	developer := widget.NewEntry()
+	developer.SetText("nawakarit")
 	developer.SetPlaceHolder("Your name - จะแสดงหน้าสโตร์")
 
 	date := widget.NewEntry()
@@ -181,34 +188,44 @@ func main() {
 	timeEntry.SetPlaceHolder("⏰ เวลา - HH:MM")
 
 	version := widget.NewEntry()
+	version.SetText("5.5.5")
 	version.SetPlaceHolder("ใ่ส่เวอร์ชัน เช่น 1.0.0")
 
 	desUpdate1 := widget.NewEntry()
+	desUpdate1.SetText("ad go func")
 	desUpdate1.SetPlaceHolder("-สิ่งที่อัพเดท 1")
 
 	desUpdate2 := widget.NewEntry()
+	desUpdate2.SetText("ad tech sime")
 	desUpdate2.SetPlaceHolder("-สิ่งที่อัพเดท 2")
 
 	owner := widget.NewEntry()
+	owner.SetText("nawakarit-VOID")
 	owner.SetPlaceHolder("ชื่อเจ้าของ Github [Owner]")
 
 	nameRepo := widget.NewEntry()
+	nameRepo.SetText("test-2-flatpak")
 	nameRepo.SetPlaceHolder("ชื่อ Repository")
 
 	namePix1 := widget.NewEntry()
-	namePix1.SetPlaceHolder("1.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+	namePix1.SetText("SCR_2026-04-06_21-06-09")
+	namePix1.SetPlaceHolder("1.ชื่อ รูป ไม่ต้องเติมนามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
 
 	namePix2 := widget.NewEntry()
-	namePix2.SetPlaceHolder("2.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+	namePix2.SetText("SCR_2026-04-06_21-07-08")
+	namePix2.SetPlaceHolder("2.ชื่อ รูป ไม่ต้องเติมนามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
 
 	namePix3 := widget.NewEntry()
-	namePix3.SetPlaceHolder("3.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+	namePix3.SetText("SCR_2026-04-06_21-07-18")
+	namePix3.SetPlaceHolder("3.ชื่อ รูป ไม่ต้องเติมนามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
 
 	namePix4 := widget.NewEntry()
-	namePix4.SetPlaceHolder("4.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+	namePix4.SetText("SCR_2026-04-06_21-07-08")
+	namePix4.SetPlaceHolder("4.ชื่อ รูป ไม่ต้องเติมนามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
 
 	namePix5 := widget.NewEntry()
-	namePix5.SetPlaceHolder("5.ชื่อ รูป ไม่ต้องเติม นามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
+	namePix5.SetText("SCR_2026-04-06_21-06-09")
+	namePix5.SetPlaceHolder("5.ชื่อ รูป ไม่ต้องเติมนามสกุล (เอารูปวางไว้ข้างไฟล์ main โปรเจค)")
 
 	// log box
 	logBox := widget.NewMultiLineEntry()

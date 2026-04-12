@@ -4,33 +4,33 @@
   <id>{{.AppID}}</id>
 
   <name>{{.Name}}</name>
+
   <summary>{{.Summary}}</summary>
+  <!--
+  <summary xml:lang="th">ภาษาไทย</summary>
+-->
 
  <project_license>{{.License}}</project_license>
   <metadata_license>CC0-1.0</metadata_license>
 
   <content_rating type="oars-1.1"/>
 
-  <developer_name>{{.Developer}}</developer_name>
+  <developer_name>by {{.Developer}}</developer_name>
+  <developer_name xml:lang="th">by {{.Developer}} or เจช์ (วัดดงหมี)</developer_name>
 
   <description>
     <p>{{.Description}}</p>
-
-
-
-
-
-
-
+    <!--
+    <p xml:lang="th">ภาษาไทย</p>
+    -->
   </description>
 
   <launchable type="desktop-id">{{.AppID}}.desktop</launchable>
 
   <releases>
     <!-- เวอร์ชันล่าสุด (ต้องอยู่บนสุด) -->
-    <release version="{{.Version}}" date="{{.Date}}"/>
+    <release version="{{.Version}}" date="{{.Date}}">
    <description>
-      <p>{{.Name}} {{.Version}}</p>
       <ul>
         <li>{{.DesUpdate1}}</li>
         <li>{{.DesUpdate2}}</li>
@@ -38,59 +38,54 @@
     </description>
   </release>
 
-<!-- เวอร์ชันก่อนหน้า -->
-  <!--release version="*.*.*" date="****-**-**">
+<!-- เวอร์ชันก่อนหน้า 
+  <release version="*.*.*" date="****-**-**">
     <description>
-      <p>*****</p>
         <ul>
-        <li>*****</li>
-        <li>*****</li>
+        <li>*-*</li>
+        <li>*-*</li>
       </ul>
     </description>
-  </release-->
-
-  <!-- เวอร์ชันแรก -->
-  <!--release version="*.*.*" date="****-**-**">
+  </release>
+-->
+  <!-- เวอร์ชันแรก 
+  <release version="*.*.*" date="****-**-**">
     <description>
-      <p>*****</p>
         <ul>
-        <li>*****</li>
-        <li>*****</li>
+        <li>*-*</li>
+        <li>*-*</li>
       </ul>
     </description>
-  </release-->
-
+  </release>
+-->
+  
 </releases>
 
  <screenshots>
-
   <screenshot type="default">
     <caption>Main window</caption>
     <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix1}}.png</image>
   </screenshot>
-
   <screenshot>
     <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix2}}.png</image>
   </screenshot>
-
   <screenshot>
     <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix3}}.png</image>
   </screenshot>
-
   <screenshot>
     <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix4}}.png</image>
   </screenshot>
-
   <screenshot>
     <image>https://raw.githubusercontent.com/{{.Owner}}/{{.NameRepo}}/refs/heads/main/{{.NamePix5}}.png</image>
   </screenshot>
-
 </screenshots>
 
   <url type="homepage">https://github.com/{{.Owner}}</url>
+  <url type="help">https://github.com/{{.Owner}}/{{.NameRepo}}/blob/main/README</url>
   <url type="bugtracker">https://github.com/{{.Owner}}/{{.NameRepo}}/issues</url>
-  <!--url type="donation">https://your-site.com/donate</url-->
-  <!--url type="help">https://your-site.com/help</url-->
 
+  <!--
+  <url type="donation">https://xx-xx.com/donate</url>
+-->
 
 </component>

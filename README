@@ -1,0 +1,11 @@
+ในเครื่องต้องมี Flatpak
+-flatpak --version
+-flatpak-builder --version
+-imagemagick
+
+
+
+
+## License
+This project is licensed under the GNU GPL v3 License.
+คำอธิบายภาษาไทยดูได้ที่ `LICENSE.th.md`
