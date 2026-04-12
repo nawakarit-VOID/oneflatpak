@@ -2,8 +2,6 @@
 set -e
 export PATH=/usr/local/go/bin:$PATH
 
-EXEC={{.Command}}
-
 echo "ตรวจเช็คไฟล์"
 sleep 1
 
@@ -14,7 +12,7 @@ sleep 1
 echo "🔨 ใจเย็นๆ..."
 sleep 1
 go mod tidy
-go build -ldflags="-s -w" -o $EXEC
+go build -ldflags="-s -w" -o {{.Command}}
 
 echo "📦 ลบ Flatpak repo...อันก่อน"
 sleep 1
@@ -27,6 +25,10 @@ cp -r icons  flatpak/
 echo "📦 หาไฟล์ json แล้ว รัน scrip...สร้าง ไฟล์ bundle"
 sleep 1
 flatpak-builder --force-clean --repo=repo build-dir flatpak/{{.AppID}}.json
+
+echo "📦 ลบ .Flatpak...อันก่อน"
+sleep 1
+rm {{.Name}}.flatpak
 
 echo "📦 Packing...เตรียมรับแรงกระแทก"
 sleep 1
