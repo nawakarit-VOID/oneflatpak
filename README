@@ -1,10 +1,80 @@
-ในเครื่องต้องมี Flatpak
--flatpak --version
--flatpak-builder --version
--imagemagick
+ชื่อแอพ - oneflatpak
+    คุณสมบัติ
+        -ใช้สำหรับทำ flatpak 
+        -flatpak คือ ไฟล์สำหรับติดตั้งลงในเครื่อง 
 
+ขั้นตอนการใช้งาน 
+    แบบง่ายที่สุด
+        - ดาวน์โหลด oneflatpak-x86_64.AppImage
+        - แฟ้ม templates
 
+วิธีการใช้งาน
+    โครงสร้างแฟ้ม
+        1.สร้างแฟ้ม oneflatpak/
+        ├── oneflatpak-x86_64.AppImage
+        └── แฟ้ม templates
 
+        2.แฟ้มโปรเจคเป้าหมาย/
+        ├── icon.png (ตั้งชื่อว่า icon.png) (Master*)(512 อย่างน้อย)
+        ├── main.go
+        ├── go.mod
+        └── go.sum
+
+        2.เปิดโปรแกรม oneflatpak-x86_64.AppImage
+            -oneflatpak-x86_64.AppImage จำเป็นต้องมี แฟ้ม templates อยู่ในแฟ้มเดียวกันเสมอ
+
+        3.ใส่รายละเอียดไฟล์ 
+            1.กดเลือกแฟ้มเป้าหมาย
+            2.กด scrip icon ตามด้วย กด build icons *จะมีหน้าต่าง command รอจนเสร็จ
+            3.ใส่รายละเอียด ตามคำแนะนำในแต่ละช่องช่อง (ลบของเดิมในช่องออกก่อน)
+            4.กดปุ่มใส่เวลาปัจจุบัน ตามด้วยรายละเอียด เหมือนข้อ (3)
+            5.กด Genscrip 
+            6.ตรวจเช็คไฟล์ XML ที่อยู่ในไฟล์เป้าหมายก่อน (ใส่รายละเอียดเพิ่มเติม)
+            7.กด Run build flatpak (ไม่ผ่านให้ตรวจเช็คข้อ (6))
+            8.install
+
+สิ่งที่เครื่องใช้งานจะต้องมี
+            -ภาษา go (golang) (ในเครื่อง)
+            -flatpak
+            -flatpak-builder
+            -ImageMagick
+            -และอื่นๆที่ไฟล์ go.mod ต้องใช้งาน
+            
+คุณสมบัติเด่น
+            -ใช้ภาษา Go
+            -ใช้ได้กับภาษา Go (Golang)
+            -ใช้ fyne (gui) ทั้งหมด
+            -icon เป็นฟังชั้นเสริม(2)*
+
+                        (2)* การใช้งาน ฟังชั้นเสริม
+                        -ถ้าต้องการให้ได้ icon ขนาดเล็กมาใช้ใน taskbar
+                        -ต้องใช้ฟังชั้น _ "embed"
+
+                        //go:embed icons/*
+                        var iconFS embed.FS
+
+                        func loadIcon(size int) fyne.Resource {
+	                        var file string
+
+	                        switch {
+	                        case size >= 512:
+		                        file = "icons/icon-512.png" ///ที่อยู่
+	                        case size >= 256:
+		                        file = "icons/icon-256.png"
+	                        case size >= 128:
+		                        file = "icons/icon-128.png"
+	                        default:
+		                        file = "icons/icon-64.png"
+	                        }
+
+	                        data, _ := iconFS.ReadFile(file)
+	                        return fyne.NewStaticResource(file, data)
+                        }
+
+                        --	icon := loadIcon(64) //เอา data 64 มาใช้
+
+คุณสมบัติเด่น (ที่ควรระวังมาก)
+            -จำเป็นต้องขอการเข้าถึงทุกอย่างในเครื่อง
 
 ## License
 This project is licensed under the GNU GPL v3 License.
