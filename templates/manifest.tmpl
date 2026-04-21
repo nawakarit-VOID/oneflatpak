@@ -1,10 +1,11 @@
 {
-  "app-id": "{{.AppID}}",
+  "id": "{{.AppID}}",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "25.08",
   "sdk": "org.freedesktop.Sdk//25.08",
   "command": "{{.Command}}",
   "finish-args": [
+    "--filesystem=home",
     "--share=ipc",
     "--socket=fallback-x11",
     "--socket=wayland"
@@ -23,6 +24,7 @@
         "install -D icon-128.png /app/share/icons/hicolor/128x128/apps/{{.AppID}}.png",
         "install -D icon-256.png /app/share/icons/hicolor/256x256/apps/{{.AppID}}.png",
         "install -D icon-512.png /app/share/icons/hicolor/512x512/apps/{{.AppID}}.png"
+
       ],
       "sources": [
         { "type": "file","path": "../{{.Command}}"},
@@ -34,6 +36,7 @@
         { "type": "file", "path": "icons/icon-128.png" },
         { "type": "file", "path": "icons/icon-256.png" },
         { "type": "file", "path": "icons/icon-512.png" }
+
       ]
     }
   ]

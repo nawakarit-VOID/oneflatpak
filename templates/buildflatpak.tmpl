@@ -21,14 +21,9 @@ rm -rf build-dir repo
 echo "📦 ก็อป iconsไปที่ Flatpak..."
 cp -r icons  flatpak/
 
-
 echo "📦 หาไฟล์ json แล้ว รัน scrip...สร้าง ไฟล์ bundle"
 sleep 1
 flatpak-builder --force-clean --repo=repo build-dir flatpak/{{.AppID}}.json
-
-echo "📦 ลบ .Flatpak...อันก่อน"
-sleep 1
-rm {{.Name}}.flatpak
 
 echo "📦 Packing...เตรียมรับแรงกระแทก"
 sleep 1
